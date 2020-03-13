@@ -30,3 +30,34 @@ model.fit(x_train,y_train)
 acc = model.score(x_test,y_test)
 
 print(acc)
+
+'''
+best = 0
+bestnei = 0
+neighbors = 3
+for i in range(5):
+  for i in range(10000):
+    x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(X, Y, test_size=0.1)
+
+    model = KNeighborsClassifier(n_neighbors=5)
+
+    model.fit(x_train,y_train)
+
+    acc = model.score(x_test,y_test)
+
+    if acc > best: 
+      best = acc
+      bestnei = neighbors
+      with open("carmodel.pickle", "wb") as f:
+        pickle.dump(model, f) 
+  neighbors = neighbors + 2
+print("Best accuracy: ", best)
+print("Best number of neighbors: ", bestnei)
+'''
+
+predicted = model.predict(x_test)
+names = ["unacc", "acc", "good", "vgood"]
+
+for x in range(len(predicted)):
+    print("Predicted: ", predicted[x], "Data: ", x_test[x], "Actual: ", names[y_test[x]])
+
