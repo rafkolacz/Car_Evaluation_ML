@@ -1,7 +1,7 @@
 import Car_Evaluation_Model
 
 
-def prediction(x):
+def prediction(x): # predict car class using model from Car_Evaluation_Model
     temp = [[1, 1, 1, 1, 1, 1]]
     temp.append(x)
     predicted = Car_Evaluation_Model.model.predict(temp)
@@ -9,7 +9,7 @@ def prediction(x):
     return predicted[1]
 
 
-def input_val(data):
+def input_val(data): # converting non numeric data into numeric
     # features = ["buying", "maint", "door", "persons", "lug_boot", "safety"]
     size = ["small", "med", "big"]  # lug_boot
     names =['low', 'med', 'high', 'vhigh']  # buying and maint
@@ -39,11 +39,16 @@ def input_val(data):
     return conv_data
 
 
+def engine(non_numeric): # combine prediction and input val
+    classVal = ["unacceptable", "acceptable", "good", "very good"]
+    numeric = input_val(non_numeric)
+    result = prediction(numeric)
+    result = classVal[result]   # unacceptable, acceptable, good, very good
 
-#z = [3,2,3,4,1,2]
-#print(prediction(z))
+    return result
+
 
 data = ["high", "med", 2, 2, "small", "high"]
+print(engine(data))
 
-x = input_val(data)
 
